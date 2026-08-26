@@ -15,7 +15,7 @@ export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('esraamjdy7@gmail.com');
+    navigator.clipboard.writeText('esraamjdy@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -136,7 +136,7 @@ export function Contact() {
                     title="Click to copy email address"
                     className="group inline-flex items-center gap-3 text-2xl md:text-3xl font-bold text-gray-200 hover:text-[#3B82F6] transition-colors cursor-pointer text-left"
                   >
-                    <span>esraamjdy7@gmail.com</span>
+                    <span>esraamjdy@gmail.com</span>
                     {copied ? (
                       <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-md bg-[#3B82F6] text-white font-medium tracking-wide">
                         <FiCheck className="w-3.5 h-3.5" /> Copied!
@@ -150,7 +150,7 @@ export function Contact() {
                 {/* Line 2: 3 Logos on the same line without any borders */}
                 <div className="flex items-center gap-6 pt-2">
                   {[
-                    { name: 'Email', url: 'mailto:esraamjdy7@gmail.com', icon: FiMail, hoverColor: '#3B82F6' },
+                    { name: 'Email', url: 'mailto:esraamjdy@gmail.com', icon: FiMail, hoverColor: '#3B82F6' },
                     { name: 'GitHub', url: 'https://github.com/esraamjdy', icon: FiGithub, hoverColor: '#60A5FA' },
                     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/esraamjdy/', icon: FiLinkedin, hoverColor: '#0077B5' },
                   ].map((logo) => (

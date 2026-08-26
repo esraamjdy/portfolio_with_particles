@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = process.env.EMAIL_USER || 'esraamjdy7@gmail.com';
+    const user = process.env.EMAIL_USER || 'esraamjdy@gmail.com';
     const pass = process.env.EMAIL_PASS;
 
     if (!pass) {
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: `"${name}" <${user}>`,
-      to: 'esraamjdy7@gmail.com',
+      to: 'esraamjdy@gmail.com',
       replyTo: email,
       subject: `New Portfolio Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
