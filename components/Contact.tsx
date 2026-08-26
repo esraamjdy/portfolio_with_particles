@@ -66,34 +66,27 @@ export function Contact() {
     setErrorMessage('');
 
     try {
-      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'a88c3e80-4966-419b-a3d8-55444a7f0e3f';
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
         },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: `Portfolio Message from ${formData.name}`,
-        }),
+        body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      if (result.success) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
         setTimeout(() => {
           setSubmitted(false);
         }, 5000);
       } else {
-        setErrorMessage(result.message || 'Failed to send message. Please try again.');
+        setErrorMessage(data.error || 'Failed to send message. Please try again.');
       }
     } catch {
-      setErrorMessage('Something went wrong. Please try again.');
+      setErrorMessage('Something went wrong. Please check your connection.');
     } finally {
       setIsSubmitting(false);
     }
@@ -128,7 +121,7 @@ export function Contact() {
                   Get in Touch
                 </h3>
                 <p className="text-gray-400 leading-relaxed">
-                  Whether you have a detailed project brief or simply want to explore new possibilities, 
+                  Whether you have a detailed project brief or simply want to explore new possibilities,
                   my inbox is always open. Reach out through any of these direct channels.
                 </p>
               </div>
@@ -262,12 +255,12 @@ export function Contact() {
 
               {submitted && (
                 <p className="text-xs text-[#10B981] text-center font-medium">
-                  Thank you! Your message has been sent directly to my inbox.
+                  Thank you! Your message has been sent successfully.
                 </p>
               )}
 
               {errorMessage && (
-                <p className="text-xs text-red-500 text-center font-medium">
+                <p className="text-xs text-red-400 text-center font-medium">
                   {errorMessage}
                 </p>
               )}
