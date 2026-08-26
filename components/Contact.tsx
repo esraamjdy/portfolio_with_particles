@@ -9,6 +9,8 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
@@ -58,19 +60,43 @@ export function Contact() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    
-    const subject = encodeURIComponent(`Portfolio Message from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    
-    window.location.href = `mailto:esraamjdy7@gmail.com?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setErrorMessage('');
 
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 4000);
+    try {
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'a88c3e80-4966-419b-a3d8-55444a7f0e3f';
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Message from ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } else {
+        setErrorMessage(result.message || 'Failed to send message. Please try again.');
+      }
+    } catch {
+      setErrorMessage('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -223,21 +249,30 @@ export function Contact() {
 
               <motion.button
                 type="submit"
-                className="w-full py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer active:scale-95 text-white"
+                disabled={isSubmitting}
+                className="w-full py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer active:scale-95 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   backgroundColor: submitted ? '#10B981' : '#3B82F6',
                 }}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {submitted ? '✓ Message Sent!' : 'Send Message'}
+                {isSubmitting ? 'Sending...' : submitted ? '✓ Message Sent!' : 'Send Message'}
               </motion.button>
 
-              {submitted ? (
+              {submitted && (
                 <p className="text-xs text-[#10B981] text-center font-medium">
-                  Thank you! Your message has been sent successfully.
+                  Thank you! Your message has been sent directly to my inbox.
                 </p>
-              ) : (
+              )}
+
+              {errorMessage && (
+                <p className="text-xs text-red-500 text-center font-medium">
+                  {errorMessage}
+                </p>
+              )}
+
+              {!submitted && !errorMessage && (
                 <p className="text-xs text-gray-500 text-center">
                   I&apos;ll get back to you within 24 hours
                 </p>
