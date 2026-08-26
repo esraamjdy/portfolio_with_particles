@@ -163,7 +163,7 @@ export function Projects() {
 
             {/* ── LEFT: Minimal semicircle selector on the right side ───────────── */}
             <div
-              className="relative flex items-center justify-center"
+              className="relative hidden lg:flex items-center justify-center"
               style={{ width: 420, height: "620px", marginLeft: '-110px' }}
             >
               {/* Anchor element for 3D Particle Number */}
@@ -243,7 +243,7 @@ export function Projects() {
 
 
             {/* ── RIGHT: Project details — NO CARD ────────────── */}
-            <div className="flex-1 min-w-0 pl-28 md:pl-40 xl:pl-56 max-w-[900px]">
+            <div className="flex-1 min-w-0 pl-0 lg:pl-28 xl:pl-40 max-w-[900px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject.id}
@@ -253,12 +253,12 @@ export function Projects() {
                   transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                   {/* Title */}
-                  <h3 className="text-5xl sm:text-6xl xl:text-7xl font-extrabold text-[#EEE0CC] leading-[1.05] mb-3">
+                  <h3 className="text-3xl sm:text-5xl xl:text-7xl font-extrabold text-[#EEE0CC] leading-[1.1] mb-3">
                     {activeProject.title}
                   </h3>
 
                   {/* System Type below title */}
-                  <div className="flex items-center gap-2 text-sm font-mono mb-6">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-mono mb-4 sm:mb-6">
                     <span className="text-gray-400">System:</span>
                     <span style={{ color: activeProject.accentColor }} className="font-semibold">
                       {activeProject.systemType}
@@ -266,7 +266,7 @@ export function Projects() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-lg sm:text-xl leading-relaxed max-w-2xl mb-8">
+                  <p className="text-gray-400 text-sm sm:text-lg xl:text-xl leading-relaxed max-w-2xl mb-6 sm:mb-8">
                     {activeProject.description}
                   </p>
 

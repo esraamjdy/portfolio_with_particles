@@ -249,25 +249,25 @@ export function About() {
                   transition={{ duration: 0.35, ease: 'easeInOut' }}
                   className="absolute inset-0 flex items-center"
                 >
-                  <div className="max-w-[100rem] mx-auto px-8 md:px-16 lg:px-24 w-full">
-                    <div className="flex flex-wrap gap-5 pt-36">
-                      {categories[activeCategory].skills.map((skill, sIdx) => (
-                        <motion.div
-                          key={skill}
-                          initial={{ opacity: 0, scale: 0.88 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.22, delay: sIdx * 0.04 }}
-                          className="px-5 py-3 rounded-xl bg-[#18181b] border border-gray-800 text-[#EEE0CC] font-semibold text-sm md:text-base hover:border-[#BA6A4C] hover:bg-[#BA6A4C]/10 transition-all duration-300 cursor-default flex items-center gap-3"
-                        >
-                          <span
-                            className="w-2 h-2 rounded-full flex-shrink-0"
-                            style={{ background: categories[activeCategory].accentColor }}
-                          />
-                          {skill}
-                        </motion.div>
-                      ))}
+                    <div className="max-w-[100rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full">
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-2.5 sm:gap-4 pt-24 sm:pt-36">
+                        {categories[activeCategory].skills.map((skill, sIdx) => (
+                          <motion.div
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0.88 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.22, delay: sIdx * 0.04 }}
+                            className="px-3.5 py-2 sm:px-5 sm:py-3 rounded-xl bg-[#18181b] border border-gray-800 text-[#EEE0CC] font-semibold text-xs sm:text-sm md:text-base hover:border-[#BA6A4C] hover:bg-[#BA6A4C]/10 transition-all duration-300 cursor-default flex items-center gap-2 sm:gap-3"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0"
+                              style={{ background: categories[activeCategory].accentColor }}
+                            />
+                            {skill}
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>

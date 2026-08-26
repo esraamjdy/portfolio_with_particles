@@ -82,13 +82,13 @@ export function Hero() {
         </motion.p>
 
         {/* Question — the hero headline */}
-        <motion.div className="mb-12 flex justify-center" variants={itemVariants}>
+        <motion.div className="mb-12 flex justify-center px-2" variants={itemVariants}>
           <h2
-            className="font-bold tracking-tight leading-tight inline-flex items-baseline whitespace-nowrap"
-            style={{ color: '#EEE0CC', fontSize: 'clamp(2.5rem, 7vw, 6.5rem)' }}
+            className="font-bold tracking-tight leading-tight inline-flex items-baseline flex-wrap justify-center text-center"
+            style={{ color: '#EEE0CC', fontSize: 'clamp(2.1rem, 7vw, 6.5rem)' }}
           >
-            Need a creative website
-            <span id="hero-question-anchor" className="inline-block relative ml-2 w-[0.8em] h-[0.8em] align-baseline" />
+            <span>Need a creative website</span>
+            <span id="hero-question-anchor" className="inline-block relative ml-2 w-[0.8em] h-[0.8em] align-baseline flex-shrink-0" />
           </h2>
         </motion.div>
 
