@@ -152,6 +152,32 @@ export function Hero() {
           >
             Get in Touch
           </a>
+          <a
+            href="/cv.pdf"
+            download="cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer px-8 py-3.5 rounded-full font-semibold text-sm md:text-base tracking-wide border transition-all duration-300 active:scale-95 select-none flex items-center gap-2"
+            style={{
+              borderColor: 'rgba(186, 106, 76, 0.6)',
+              color: '#EEE0CC',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(186, 106, 76, 0.2)';
+              e.currentTarget.style.borderColor = '#BA6A4C';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.borderColor = 'rgba(186, 106, 76, 0.6)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download CV
+          </a>
         </motion.div>
       </motion.div>
 

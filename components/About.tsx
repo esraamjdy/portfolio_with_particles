@@ -179,8 +179,10 @@ export function About() {
 
                 <a
                   id="cv-icon-anchor"
-                  href="/Esraa_s_Resume.pdf"
-                  download="Esraa_s_Resume.pdf"
+                  href="/cv.pdf"
+                  download="cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center text-[#BA6A4C] hover:text-[#EEE0CC] transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer flex-shrink-0"
                   title="Download CV"
                   aria-label="Download CV"
